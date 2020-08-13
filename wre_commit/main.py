@@ -15,7 +15,7 @@ class Program():
     """Program options, arguments, help and version."""
 
     NAME = "wre-commit"
-    VERSION = "1.0.3"
+    VERSION = "1.0.5"
 
     def __init__(self):
 
@@ -237,7 +237,7 @@ class Hooks():
 
     # keep that value exactly as is across all the versions
     UNIQUE_SIGNATURE = (
-        "fAbFGfPKLes8pkO4TrgRt2EL06Bk3CnHO8g9pPulwx9M5KF9QieapQ5xk4m4YCdedVM"
+        "from wre_commit.main import main"
     )
 
     # supported hook types
@@ -302,7 +302,7 @@ class Hooks():
                 File.delete(hook_path)
 
             # install the hook
-            File.symlink(os.path.realpath(__file__), hook_path)
+            File.symlink(Command.which("wre-commit"), hook_path)
             print("{} installed at {}".format(hook_type, hook_path))
 
         return 0

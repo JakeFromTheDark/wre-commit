@@ -13,10 +13,11 @@
     setting.
 
 ## Installation into system
-Install the wraper by command:
+Install the wraper into system by command:
 ```bash
-pip3 install wre-commit
+pip3 install --upgrade wre-commit
 ```
+Then a script `wre-commit` is available in the `$PATH`.
 
 ## Installation into Git repository
 Install this script as `.git/hooks/pre-commit` into your Git repository
