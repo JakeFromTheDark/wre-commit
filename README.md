@@ -24,7 +24,7 @@ by running the command:
 ```bash
 wre-commit install
 ```
-Add option -`t` or `--hook-type` to specify another/more hook(s) to install.
+Add option `-t` or `--hook-type` to specify another/more hook(s) to install.
 
 ## Uninstallation from Git repository
 Uninstall this script as `.git/hooks/pre-commit` from your Git repository
@@ -47,14 +47,14 @@ wre-commit run --all-files
 ```
 
 If no such line is present in the `pre-commit` config file, then the locally
-installed '`re-commit` will be called as usuall.
+installed `pre-commit` will be called as usuall.
 
 ## Debugging
 Set environment variable `WRE_COMMIT_DEBUG` to see debug messages on standard error:
 * of the executed commands
 * about splitting multi-doc config files
 
-# Requirements
+## Requirements
 * python3
 AND:
   * locally installed and running `docker`
