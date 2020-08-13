@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """Wrapper for https://pre-commit.com, so 'wre-commit'."""
 
+__program__ = "wre-commit"
 __version__ = "1.0.6"
 
 import glob
@@ -16,14 +17,11 @@ import tempfile
 class Program():
     """Program options, arguments, help and version."""
 
-    NAME = "wre-commit"
-    VERSION = "1.0.5"
-
     def __init__(self):
 
         # set logging
         logging.basicConfig(
-            format="%(levelname)s: {}: %(message)s".format(self.NAME),
+            format="%(levelname)s: {}: %(message)s".format(__program__),
             level="DEBUG" if "WRE_COMMIT_DEBUG" in os.environ else "INFO",
         )
 
@@ -57,11 +55,11 @@ optional arguments:
   -V, --version         show version number of the {NAME} and all
                         pre-commits and exit
 
-""".format(NAME=self.NAME))
+""".format(NAME=__program__))
 
     def print_version(self):
         """Print version."""
-        print("{} {}".format(self.NAME, __version__))
+        print("{} {}".format(__program__, __version__))
 
     def get_command(self):
         """Get command as the first oprion."""
@@ -286,7 +284,7 @@ class Hooks():
 
         # compose and return paths
         path = os.path.join(cls._get_git_dir(), "hooks", hook_type)
-        return path, "{}.legacy.{}".format(path, Program.NAME)
+        return path, "{}.legacy.{}".format(path, __program__)
 
     @classmethod
     def install(cls, hook_types=None):
@@ -342,7 +340,7 @@ class PreCommit():
     PWD = os.getcwd()
 
     # config key for the docker image
-    KEY_DOCKER_IMAGE = "### {}-docker-image".format(Program.NAME)
+    KEY_DOCKER_IMAGE = "### {}-docker-image".format(__program__)
 
     def __init__(self, name, opts, args, command):
         self.name = name

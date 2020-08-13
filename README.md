@@ -61,3 +61,25 @@ AND:
   * locally installed and running `docker`
   OR:
   * locally installed `pre-commit`
+
+## Developing
+
+### Update versions
+* in `wre_commit/main.py`
+* in `setup.cfg`
+
+### Ensure local dependencies
+```bash
+python3 -m pip install --user --upgrade setuptools wheel twine
+```
+
+### Build PyPi package
+```bash
+rm -rf dist
+python3 setup.py sdist bdist_wheel
+```
+
+### Upload package to PyPi
+```bash
+python3 -m twine upload dist/*
+```
