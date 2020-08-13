@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 """Wrapper for https://pre-commit.com, so 'wre-commit'."""
 
+__version__ = "1.0.6"
+
 import glob
 import logging
 import os
@@ -59,13 +61,13 @@ optional arguments:
 
     def print_version(self):
         """Print version."""
-        print("{} {}".format(self.NAME, self.VERSION))
+        print("{} {}".format(self.NAME, __version__))
 
     def get_command(self):
         """Get command as the first oprion."""
         try:
             return self.opts[0]
-        except ValueError:
+        except IndexError:
             return None
 
     def get_option(self, keys, default=None):
