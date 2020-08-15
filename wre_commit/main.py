@@ -3,7 +3,7 @@
 """Wrapper for https://pre-commit.com, so 'wre-commit'."""
 
 __program__ = "wre-commit"
-__version__ = "1.0.6"
+__version__ = "1.0.7"
 
 import glob
 import logging
@@ -356,6 +356,7 @@ class PreCommit():
         run_args = [
             "docker",
             "run",
+            "-t",
             "-v",
             "{pwd}/:{pwd}/:rw".format(pwd=self.PWD),
             "-w",
@@ -364,9 +365,10 @@ class PreCommit():
             "pre-commit",
         ]
 
-        # ... in interactive mode when not called by `git commit`
-        if not self.CALLED_BY_GIT:
-            run_args.insert(2, "-it")
+        # hook pre-push from git requires to read from STDIN
+        # what breaks TTY and colors
+        if self.CALLED_BY_GIT and self.name == "pre-push":
+            run_args[2] = "-i"
 
         return run_args
 
